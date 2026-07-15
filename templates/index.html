@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satya — Currency Note Verifier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="wordmark">
+    <span class="wordmark-mark">₹</span>
+    <span class="wordmark-text">Satya</span>
+  </div>
+  <span class="topbar-tag">note authentication</span>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">upload &nbsp;·&nbsp; scan &nbsp;·&nbsp; verify</p>
+    <h1>Hold the note<br>to the light.</h1>
+    <p class="hero-sub">Every genuine note carries marks a counterfeit can't fully copy — a watermark, a security thread, the raised print. Upload a photo and let the model look closely.</p>
+  </section>
+
+  <section class="scanner-stage">
+
+    <div class="scan-panel" id="dropzone">
+      <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg" hidden>
+
+      <div class="panel-idle" id="panelIdle">
+        <div class="bracket tl"></div>
+        <div class="bracket tr"></div>
+        <div class="bracket bl"></div>
+        <div class="bracket br"></div>
+        <svg class="note-icon" viewBox="0 0 64 40" fill="none">
+          <rect x="1" y="1" width="62" height="38" rx="3" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="32" cy="20" r="9" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="8" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="8" y1="32" x2="14" y2="32" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="50" y1="8" x2="56" y2="8" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="50" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <p class="panel-title">Place a note image here</p>
+        <p class="panel-hint">or click to browse — PNG / JPG</p>
+      </div>
+
+      <div class="panel-preview" id="panelPreview" hidden>
+        <img id="previewImg" alt="Uploaded note">
+        <div class="scan-beam" id="scanBeam"></div>
+        <div class="scan-mesh"></div>
+      </div>
+    </div>
+
+    <div class="verdict" id="verdict" hidden>
+      <div class="verdict-seal" id="verdictSeal">
+        <span id="verdictWord">—</span>
+      </div>
+      <div class="verdict-meta">
+        <div class="meta-row">
+          <span class="meta-label">confidence</span>
+          <span class="meta-value" id="confidenceValue">—</span>
+        </div>
+        <div class="confidence-track">
+          <div class="confidence-fill" id="confidenceFill"></div>
+        </div>
+        <p class="verdict-note" id="verdictNote"></p>
+      </div>
+    </div>
+
+    <div class="status-line" id="statusLine">
+      <span class="status-dot"></span>
+      <span id="statusText">Awaiting a note image</span>
+    </div>
+
+    <button class="reset-btn" id="resetBtn" hidden>Scan another note</button>
+  </section>
+
+  <section class="footnote">
+    <p>Model: MobileNetV2 transfer learning, trained on real &amp; counterfeit Indian currency images across seven denominations.</p>
+  </section>
+</main>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
